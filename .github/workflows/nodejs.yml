@@ -16,12 +16,24 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: ${{ matrix.node-version }}
-      - name: npm install, build, and test
+      - name: npm install
         run: |
           npm install
-          npm run build --if-present
       - name: Test
         run: |
           npm test
         env:
           CI: true
+      - name: Deploy to Production
+        if: success()
+        uses: actions/heroku@master
+        env:
+          HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
+        with:
+          args: container:login
+      - name: After Deploy
+        uses: actions/heroku@master
+        env:
+          HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
+        with:
+          args: container:apps
