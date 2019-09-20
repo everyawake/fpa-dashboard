@@ -5,6 +5,7 @@ const webpack = require("webpack");
 module.exports = merge(common, {
   mode: "development",
   devServer: {
+    port: 8080,
     allowedHosts: [".lvh.me", "localhost"],
     compress: true,
     watchOptions: {

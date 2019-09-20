@@ -3,9 +3,10 @@ const {
   TsConfigPathsPlugin,
   CheckerPlugin
 } = require("awesome-typescript-loader");
+const path = require("path");
 
 module.exports = {
-  entry: ["babel-polyfill", "./app/index.tsx"],
+  entry: ["./app/index.tsx"],
   devtool: "source-map",
   output: {
     path: __dirname + "/dist",
@@ -18,29 +19,28 @@ module.exports = {
   },
   module: {
     rules: [{
-      test: /\.tsx?$/,
-      exclude: /(node_modules|bower_components)/,
-      use: [{
-        loader: "babel-loader",
-        options: {
-          cacheDirectory: true,
-          presets: ["@babel/preset-env"]
-        },
+        test: /\.tsx?$/,
+        exclude: /(node_modules|bower_components)/,
+        use: [{
+            loader: "babel-loader",
+            options: {
+              cacheDirectory: true,
+              presets: ["@babel/preset-env", "@babel/preset-typescript"]
+            },
+          },
+          {
+            loader: "awesome-typescript-loader",
+            options: {
+              transpileOnly: true,
+            },
+          },
+        ],
       },
       {
-        loader: "awesome-typescript-loader",
-        options: {
-          transpileOnly: true,
-        },
+        enforce: "pre",
+        test: /\.js$/,
+        loader: "source-map-loader",
       },
-      ],
-    },
-    {
-      enforce: "pre",
-      test: /\.js$/,
-      loader: "source-map-loader",
-    },
-
     ],
   },
   plugins: [
