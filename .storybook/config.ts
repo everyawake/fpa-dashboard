@@ -1,17 +1,18 @@
 import { configure, addDecorator } from "@storybook/react";
 import { withKnobs } from "@storybook/addon-knobs";
-import React from "react";
-import { setIntlConfig, withIntl } from "storybook-addon-intl";
+import * as React from "react";
+const { setIntlConfig, withIntl } = require("storybook-addon-intl");
 
-import koMessages from "app/common/intl/assets/ko.json";
-import enMessages from "app/common/intl/assets/en.json";
+import * as koMessages from "app/common/intl/assets/ko.json";
+import * as enMessages from "app/common/intl/assets/en.json";
+const stories = require.context("../app", true, /stories\.tsx$/);
 
-const messagePack = {
+const messagePack: Record<string, any> = {
 	ko: koMessages,
 	en: enMessages,
 };
 
-const getMessages = locale => messagePack[locale];
+const getMessages = (locale: string) => messagePack[locale];
 
 // Set intl configuration
 setIntlConfig({
@@ -24,7 +25,6 @@ addDecorator(withKnobs);
 addDecorator(withIntl);
 
 function loadStories() {
-	const stories = require.context("../app", true, /stories\.tsx$/);
-	stories.keys().forEach(filename => req(filename));
+	stories.keys().forEach(filename => stories(filename));
 }
 configure(loadStories, module);
