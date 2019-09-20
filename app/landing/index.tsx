@@ -1,12 +1,13 @@
 import * as React from "react";
+import axios from "axios";
 import { connect } from "react-redux";
 import { bindActionCreators, Dispatch } from "redux";
 import { FormattedMessage } from "react-intl";
 import { push } from "connected-react-router";
-import TextField from "@material-ui/core/TextField";
 // interfaces
 import { IAppState } from "app/rootReducer";
 // components
+import TextField from "@material-ui/core/TextField";
 import { Link } from "react-router-dom";
 import {
 	Wrapper,
@@ -22,7 +23,7 @@ import {
 } from "./styled";
 // actions
 import { signIn } from "app/actions/signIn";
-import axios from "axios";
+import { openFpaSnackBar } from "common/components/fpaSnackBar/action";
 
 function mapStateToProps(state: IAppState) {
 	return {
@@ -35,6 +36,7 @@ function mapDispatchToProps(dispatch: Dispatch) {
 		{
 			signIn,
 			goHome: () => push("/dashboard"),
+			openFpaSnackBar,
 		},
 		dispatch,
 	);
@@ -157,15 +159,18 @@ class Hello extends React.Component<IProps, IState> {
 	};
 
 	private readonly submitSignIn = () => {
-		const { signIn, goHome } = this.props;
+		const { signIn, goHome, openFpaSnackBar } = this.props;
 		const { email, password } = this.state;
-
-		signIn({
-			email,
-			password,
-			cancelToken: this.cancelTokenSource.token,
-			successCallback: goHome,
-		});
+		if (email === "" || password === "") {
+			openFpaSnackBar({ messageId: "signIn.invalid" });
+		} else {
+			signIn({
+				email,
+				password,
+				cancelToken: this.cancelTokenSource.token,
+				successCallback: goHome,
+			});
+		}
 	};
 }
 

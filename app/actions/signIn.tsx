@@ -3,7 +3,7 @@ import { ActionExtractor, ActionThunk } from "common/helpers/reduxHelper";
 import AuthAPI from "app/apis/auth";
 import { changeCurrentUser } from "./app";
 import { storeAuthToken } from "common/helpers/authTokenHelper";
-import { push } from "connected-react-router";
+import { openFpaSnackBar } from "common/components/fpaSnackBar/action";
 
 function createAction<T extends { type: SIGN_IN_TYPES }>(d: T): T {
 	return d;
@@ -44,10 +44,11 @@ export function signIn(
 				}),
 			);
 			storeAuthToken(result.token);
-
+			dispatch(openFpaSnackBar({ messageId: "signIn.done" }));
 			successCallback();
 		} catch (err) {
 			dispatch(ActionCreator.failedSignIn());
+			dispatch(openFpaSnackBar({ messageId: "signIn.fail" }));
 		}
 	};
 }

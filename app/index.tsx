@@ -18,6 +18,7 @@ import { getAuthByToken } from "./actions/signIn";
 
 import theme from "common/theme";
 import { GlobalStyleOption, RootWrapper } from "./rootStyled";
+import FpaSnackBar from "common/components/fpaSnackBar";
 
 import Landing from "./landing";
 import Dashboard from "./dashboard";
@@ -56,6 +57,7 @@ class ClientRender {
 									<Route path="/" component={Landing} />
 								</Switch>
 								<GlobalStyleOption />
+								<FpaSnackBar />
 							</RootWrapper>
 						</ThemeProvider>
 					</ConnectedRouter>

@@ -16,6 +16,11 @@ export function reducer(state = INITIAL_STATE, action: AllActions): IState {
 				currentUser: action.payload.userData,
 			};
 		}
+
+		case APP_TYPES.SIGN_OUT: {
+			return INITIAL_STATE;
+		}
+
 		default:
 			return state;
 	}

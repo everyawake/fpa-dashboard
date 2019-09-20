@@ -6,6 +6,11 @@
   "landing.title.main": "안녕하세요! FPA입니다.",
   "landing.title.sub": "FPA를 이용하기 위해선 먼저 로그인을 해주세요",
 
+  "signout.done": "성공적으로 로그아웃 했습니다.",
+  "signIn.done": "로그인 성공!",
+  "signIn.fail": "로그인 실패",
+  "signIn.invalid": "이메일 또는 비밀번호를 맞게 입력했는지 확인해주세요",
+
   "welcome.1": "FPA에 오신걸 환영합니다!",
 
   "nav.home": "Home",

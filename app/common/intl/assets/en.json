@@ -6,6 +6,11 @@
   "landing.title.main": "Hello! This is FPA",
   "landing.title.sub": "Please login first for use FPA",
 
+  "signout.done": "Successfully log out",
+  "signIn.done": "Successfully log in",
+  "signIn.fail": "Failed to log in",
+  "signIn.invalid": "Please, check Email or Password",
+
   "welcome.1": "Welcome to FPA!",
 
   "nav.home": "Home",

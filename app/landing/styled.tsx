@@ -27,14 +27,14 @@ export const HeaderWrapper = styled.header`
 `;
 
 export const MainTitle = styled.h1`
-	font-size: 3rem;
+	font-size: 2.5rem;
 	line-height: 2;
 	font-weight: bold;
 	color: ${props => props.theme.grey1000};
 `;
 
 export const SubTitle = styled.h3`
-	font-size: 1.2rem;
+	font-size: 1rem;
 	color: ${props => props.theme.grey800};
 `;
 

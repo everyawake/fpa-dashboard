@@ -32,13 +32,9 @@ export const GlobalStyleOption = createGlobalStyle`
 		padding: 0;
 	}
 
-	p, span {
-		line-height: 1;
-	}
-
 	* {
 		box-sizing: border-box;
-		font-family: "Noto Sans KR", "Helvetica", "sans-serif";
+		font-family: "Noto Sans KR", "Helvetica", "sans-serif" !important;
 	}
 `;
 

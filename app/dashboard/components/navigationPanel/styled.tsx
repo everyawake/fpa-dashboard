@@ -37,11 +37,13 @@ export const Header = styled.header`
 	.username {
 		display: inline-flex;
 		align-items: flex-end;
-		color: ${props => props.theme.grey1000};
-		font-size: 2rem;
-		line-height: 1.7;
-		font-weight: bold;
 		margin-bottom: 0.8rem;
+		span {
+			color: ${props => props.theme.grey1000};
+			font-size: 2rem;
+			line-height: 1;
+			font-weight: bold;
+		}
 	}
 	.guide {
 		color: ${props => darken(0.05, props.theme.white100)};
@@ -54,6 +56,7 @@ export const NavWrapper = styled.div`
 	a {
 		width: 100%;
 		text-decoration: none;
+		display: inline-block;
 	}
 `;
 
@@ -62,11 +65,12 @@ export const NavBar = styled.span<{ isSelected: boolean }>`
 	border-radius: 0.3rem;
 
 	padding: 0.4rem 0.4rem;
-	margin: 0.5rem;
+	margin: 0.5rem 0;
 
 	display: inline-block;
+	box-sizing: border-box;
 	color: ${props => props.theme.white100};
-	font-size: 1.3rem;
+	font-size: 1.2rem;
 	line-height: 1.2;
 
 	transition: background-color 150ms ease-in-out;
