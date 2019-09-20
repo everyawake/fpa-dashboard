@@ -11,8 +11,9 @@ import { createBrowserHistory } from "history";
 import { ConnectedRouter } from "connected-react-router";
 
 import theme from "common/theme";
+import { GlobalStyleOption, RootWrapper } from "./rootStyled";
 
-import Hello from "./landing";
+import Landing from "./landing";
 import rootReducer from "./rootReducer";
 import getMessages from "common/intl/getMessages";
 
@@ -32,16 +33,19 @@ class ClientRender {
 
 		ReactDOM.render(
 			<IntlProvider locale={navigator.language} messages={messages}>
-				<ConnectedRouter history={history}>
-					<Provider store={store}>
+				<Provider store={store}>
+					<ConnectedRouter history={history}>
 						<ThemeProvider theme={theme}>
-							<Switch>
-								<Route exact path="/hello" component={() => <div>H3llo World!</div>} />
-								<Route exact component={Hello} />
-							</Switch>
+							<RootWrapper>
+								<Switch>
+									<Route exact path="/hello" component={() => <div>H3llo World!</div>} />
+									<Route exact component={Landing} />
+								</Switch>
+								<GlobalStyleOption />
+							</RootWrapper>
 						</ThemeProvider>
-					</Provider>
-				</ConnectedRouter>
+					</ConnectedRouter>
+				</Provider>
 			</IntlProvider>,
 			document.getElementById("mainContainer"),
 		);

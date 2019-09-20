@@ -1,3 +1,7 @@
 {
-  "hello": "hello"
+  "hello": "hello",
+  "signIn": "Log In",
+  "signUp": "Sign Up",
+  "landing.title.main": "Hello! This is FPA",
+  "landing.title.sub": "Please login first for use FPA"
 }
