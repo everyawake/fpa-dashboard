@@ -2,6 +2,9 @@ module.exports = {
   preset: "ts-jest",
   globals: {
     NODE_ENV: "test",
+    "ts-jest": {
+      babelConfig: true,
+    }
   },
   roots: [
     "<rootDir>/app"
