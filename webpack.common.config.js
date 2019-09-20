@@ -3,16 +3,13 @@ const {
   TsConfigPathsPlugin,
   CheckerPlugin
 } = require("awesome-typescript-loader");
-const path = require("path");
 
 module.exports = {
-  entry: ["./app/index.tsx"],
-  devtool: "source-map",
-  output: {
-    path: __dirname + "/dist",
-    publicPath: "dist",
-    filename: "bundle.js",
+  entry: {
+    main: ["./app/index.tsx"],
+    vendor: ["react", "react-dom"],
   },
+  devtool: "source-map",
   resolve: {
     extensions: [".ts", ".tsx", ".js", ".jsx", ".json"],
     plugins: [new TsConfigPathsPlugin()],

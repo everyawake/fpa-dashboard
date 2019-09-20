@@ -33,12 +33,7 @@
       "app/common/*": [
         "./app/common/*"
       ]
-    }
-  },
-  "include": [
-    "./src/**/*"
-  ],
-  "exclude": [
-    "node_modules"
-  ]
+    },
+    "resolveJsonModule": true
+  }
 }

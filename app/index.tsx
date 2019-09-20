@@ -10,32 +10,39 @@ import { createLogger } from "redux-logger";
 import { createBrowserHistory } from "history";
 import { ConnectedRouter } from "connected-react-router";
 
-import getMessages from "common/intl/getMessages";
-
 import Hello from "./common/test";
 import rootReducer from "./rootReducer";
+import getMessages from "common/intl/getMessages";
 
-const currentLocale = navigator.language.split("-")[0];
+class ClientRender {
+	public render() {
+		const currentLocale = navigator.language.split("-")[0];
+		const messages = getMessages(currentLocale);
 
-const history = createBrowserHistory();
-const middleWares: any = [thunk];
+		const history = createBrowserHistory();
+		const middleWares: any = [thunk];
 
-if (process.env.NODE_ENV === "development") {
-	middleWares.push(createLogger());
+		if (process.env.NODE_ENV === "development") {
+			middleWares.push(createLogger());
+		}
+
+		const store = createStore(rootReducer(history), applyMiddleware(...middleWares));
+
+		ReactDOM.render(
+			<IntlProvider locale={navigator.language} messages={messages}>
+				<Provider store={store}>
+					<ConnectedRouter history={history}>
+						<Switch>
+							<Route exact path="/hello" component={() => <div>H3llo World!</div>} />
+							<Route exact component={Hello} />
+						</Switch>
+					</ConnectedRouter>
+				</Provider>
+			</IntlProvider>,
+			document.getElementById("mainContainer"),
+		);
+	}
 }
 
-const store = createStore(rootReducer(history), applyMiddleware(...middleWares));
-
-ReactDOM.render(
-	<IntlProvider locale={navigator.language} messages={getMessages(currentLocale)}>
-		<Provider store={store}>
-			<ConnectedRouter history={history}>
-				<Switch>
-					<Route exact path="/hello" component={() => <div>H3llo World!</div>} />
-					<Route exact component={Hello} />
-				</Switch>
-			</ConnectedRouter>
-		</Provider>
-	</IntlProvider>,
-	document.getElementById("mainContainer"),
-);
+const render = new ClientRender();
+render.render();
