@@ -1,23 +1,24 @@
 import * as React from "react";
 import { connect } from "react-redux";
-import { bindActionCreators } from "redux";
+import { bindActionCreators, Dispatch } from "redux";
 import { FormattedMessage } from "react-intl";
+import { IAppState } from "app/rootReducer";
 
-function mapStateToProps(state: any) {
-	return {};
+function mapStateToProps(state: IAppState) {
+	return {
+		...state,
+	};
 }
 
-function mapDispatchToProps(dispatch) {
-	return bindActionCreators({ dispatch }, dispatch);
+function mapDispatchToProps(dispatch: Dispatch) {
+	return bindActionCreators({ testAction: () => ({ type: "testAction" }) }, dispatch);
 }
 
 interface IProps extends ReturnType<typeof mapStateToProps>, ReturnType<typeof mapDispatchToProps> {}
 
 class Hello extends React.Component<IProps> {
 	public componentDidMount() {
-		this.props.dispatch({
-			type: "HELLO!",
-		});
+		this.props.testAction();
 	}
 
 	public render() {

@@ -10,7 +10,7 @@ import { createLogger } from "redux-logger";
 import { createBrowserHistory } from "history";
 import { ConnectedRouter } from "connected-react-router";
 
-import Hello from "./common/test";
+import Hello from "./landing";
 import rootReducer from "./rootReducer";
 import getMessages from "common/intl/getMessages";
 
