@@ -8,28 +8,42 @@ import thunk from "redux-thunk";
 import { createLogger } from "redux-logger";
 import { ThemeProvider } from "styled-components";
 import { createBrowserHistory } from "history";
-import { ConnectedRouter } from "connected-react-router";
+import { ConnectedRouter, routerMiddleware } from "connected-react-router";
+
+import * as WebFont from "webfontloader";
+
+import rootReducer from "./rootReducer";
+import getMessages from "common/intl/getMessages";
+import { getAuthByToken } from "./actions/signIn";
 
 import theme from "common/theme";
 import { GlobalStyleOption, RootWrapper } from "./rootStyled";
 
 import Landing from "./landing";
-import rootReducer from "./rootReducer";
-import getMessages from "common/intl/getMessages";
+import Dashboard from "./dashboard";
 
 class ClientRender {
-	public render() {
+	public async render() {
 		const currentLocale = navigator.language.split("-")[0];
 		const messages = getMessages(currentLocale);
 
 		const history = createBrowserHistory();
-		const middleWares: any = [thunk];
+		const middleWares: any = [thunk, routerMiddleware(history)];
 
 		if (process.env.NODE_ENV === "development") {
 			middleWares.push(createLogger());
 		}
 
 		const store = createStore(rootReducer(history), applyMiddleware(...middleWares));
+
+		WebFont.load({
+			google: {
+				families: ["Noto Sans KR"],
+			},
+		});
+
+		// getAuth & push data to store
+		await (store.dispatch as any)(getAuthByToken());
 
 		ReactDOM.render(
 			<IntlProvider locale={navigator.language} messages={messages}>
@@ -38,8 +52,8 @@ class ClientRender {
 						<ThemeProvider theme={theme}>
 							<RootWrapper>
 								<Switch>
-									<Route exact path="/hello" component={() => <div>H3llo World!</div>} />
-									<Route exact component={Landing} />
+									<Route exact path={["/dashboard", "/dashboard/:tab"]} component={Dashboard} />
+									<Route path="/" component={Landing} />
 								</Switch>
 								<GlobalStyleOption />
 							</RootWrapper>

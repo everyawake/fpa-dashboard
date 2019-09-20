@@ -1,17 +1,12 @@
 import styled from "styled-components";
 import { rgba } from "polished";
 import Button from "@material-ui/core/Button";
+import { BaseWrapper } from "common/components/baseWrapper";
 
-export const Wrapper = styled.div`
-	position: relative;
-	width: 100%;
-	height: 100%;
-
+export const Wrapper = styled(BaseWrapper)`
 	display: flex;
 	align-items: center;
 	justify-content: center;
-
-	background-color: ${props => props.theme.primary};
 `;
 
 export const Box = styled.div`

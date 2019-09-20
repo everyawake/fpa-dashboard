@@ -2,6 +2,14 @@
   "hello": "안녕하세요",
   "signIn": "로그인",
   "signUp": "회원가입",
+  "logout": "로그아웃",
   "landing.title.main": "안녕하세요! FPA입니다.",
-  "landing.title.sub": "FPA를 이용하기 위해선 먼저 로그인을 해주세요"
+  "landing.title.sub": "FPA를 이용하기 위해선 먼저 로그인을 해주세요",
+
+  "welcome.1": "FPA에 오신걸 환영합니다!",
+
+  "nav.home": "Home",
+  "nav.third_party.register": "앱 등록",
+  "nav.third_party.management": "앱 관리"
+
 }

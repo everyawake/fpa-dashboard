@@ -3,6 +3,7 @@ import { ActionExtractor, ActionThunk } from "common/helpers/reduxHelper";
 import AuthAPI from "app/apis/auth";
 import { changeCurrentUser } from "./app";
 import { storeAuthToken } from "common/helpers/authTokenHelper";
+import { push } from "connected-react-router";
 
 function createAction<T extends { type: SIGN_IN_TYPES }>(d: T): T {
 	return d;
@@ -37,10 +38,32 @@ export function signIn(
 			const result = await AuthAPI.signIn(rest);
 
 			dispatch(ActionCreator.succeededSignIn());
-			dispatch(changeCurrentUser(result.data));
+			dispatch(
+				changeCurrentUser({
+					userData: result.data,
+				}),
+			);
 			storeAuthToken(result.token);
 
 			successCallback();
+		} catch (err) {
+			dispatch(ActionCreator.failedSignIn());
+		}
+	};
+}
+
+export function getAuthByToken(): ActionThunk {
+	return async dispatch => {
+		try {
+			dispatch(ActionCreator.startSignIn());
+			const result = await AuthAPI.getAuthByToken();
+
+			dispatch(ActionCreator.succeededSignIn());
+			dispatch(
+				changeCurrentUser({
+					userData: result.result,
+				}),
+			);
 		} catch (err) {
 			dispatch(ActionCreator.failedSignIn());
 		}

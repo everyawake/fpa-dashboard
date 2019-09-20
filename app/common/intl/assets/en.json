@@ -2,6 +2,13 @@
   "hello": "hello",
   "signIn": "Log In",
   "signUp": "Sign Up",
+  "logout": "Log out",
   "landing.title.main": "Hello! This is FPA",
-  "landing.title.sub": "Please login first for use FPA"
+  "landing.title.sub": "Please login first for use FPA",
+
+  "welcome.1": "Welcome to FPA!",
+
+  "nav.home": "Home",
+  "nav.third_party.register": "App Create",
+  "nav.third_party.management": "App Management"
 }
