@@ -12,26 +12,28 @@ jobs:
 
     steps:
       - uses: actions/checkout@v1
-
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v1
         with:
           node-version: ${{ matrix.node-version }}
-
       - name: npm install
         run: |
           npm install
-
       - name: Test
         run: |
           npm test
         env:
           CI: true
-
       - name: Deploy to Production
+        if: success()
         uses: actions/heroku@master
-        if: success() && github.event_name == 'push' && github.ref == 'refs/heads/master'
-        secrets: [${{ secrets.HEROKU_API_KEY }}]
-        run: |
-          ls -al
-          heroku apps
+        env:
+          HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
+        with:
+          args: container:login
+      - name: After Deploy
+        uses: actions/heroku@master
+        env:
+          HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
+        with:
+          args: container:apps
