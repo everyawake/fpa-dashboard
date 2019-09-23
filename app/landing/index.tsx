@@ -9,18 +9,8 @@ import { IAppState } from "app/rootReducer";
 // components
 import TextField from "@material-ui/core/TextField";
 import { Link } from "react-router-dom";
-import {
-	Wrapper,
-	Box,
-	HeaderWrapper,
-	MainTitle,
-	SubTitle,
-	Body,
-	RightAlignment,
-	SignUpButton,
-	SignInButton,
-	Footer,
-} from "./styled";
+import { Wrapper, Box, HeaderWrapper, MainTitle, SubTitle, Body, SignUpButton, SignInButton, Footer } from "./styled";
+import RightAlignment from "common/components/rightAlignment";
 // actions
 import { signIn } from "app/actions/signIn";
 import { openFpaSnackBar } from "common/components/fpaSnackBar/action";

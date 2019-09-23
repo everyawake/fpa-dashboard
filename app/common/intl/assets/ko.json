@@ -15,6 +15,14 @@
 
   "nav.home": "Home",
   "nav.third_party.register": "앱 등록",
-  "nav.third_party.management": "앱 관리"
+  "nav.third_party.management": "앱 관리",
 
+  "third_party.create_done": "어플리케이션를 생성했습니다.",
+  "third_party.field_app_name": "앱 이름",
+  "third_party.field_site_url": "앱/사이트 url(ex, www.fpa.org, org.genesissam.fpa)",
+  "third_party.field_submit": "제출",
+  "third_party.field_error_empty": "모든 칸을 입력해주세요",
+  "third_party.error_400": "현재 등록할 수 없는 이름입니다.",
+  "third_party.error_401": "개발자 권한이 없으면 등록할 수 없습니다.",
+  "third_party.error_other": "죄송해요, 알 수 없는 이유로 등록에 실패했습니다."
 }

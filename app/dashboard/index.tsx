@@ -9,6 +9,7 @@ import { signOut } from "app/actions/app";
 import AuthorizedOnlyComponent from "common/components/AuthorizedOnlyComponet";
 import { Wrapper, MainPanel } from "./styled";
 import NavigationPanel from "./components/navigationPanel";
+import MainRoutePanel from "./components/mainPannel/index";
 
 function mapStateToProps(state: IAppState) {
 	return {
@@ -34,7 +35,9 @@ class Dashboard extends React.PureComponent<IProps> {
 			<AuthorizedOnlyComponent>
 				<Wrapper>
 					<NavigationPanel onLogout={signOut} />
-					<MainPanel></MainPanel>
+					<MainPanel>
+						<MainRoutePanel />
+					</MainPanel>
 				</Wrapper>
 			</AuthorizedOnlyComponent>
 		);

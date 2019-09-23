@@ -8,4 +8,13 @@ declare namespace Model {
 			role: number;
 			confirmed: boolean;
 		}> {}
+
+	interface IRawThirdParty
+		extends Readonly<{
+			appName: string;
+			siteUrl: string;
+			publicKey: string;
+			privateKey: string;
+			owner: string;
+		}> {}
 }

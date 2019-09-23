@@ -45,13 +45,6 @@ export const Body = styled.div`
 	}
 `;
 
-export const RightAlignment = styled.div`
-	display: flex;
-	justify-content: flex-end;
-	width: 100%;
-	margin-top: 1.2rem;
-`;
-
 export const SignInButton = styled(Button)`
 	margin-left: 0.8rem !important;
 	background-color: ${props => props.theme.buttonColor} !important;
