@@ -15,5 +15,21 @@
 
   "nav.home": "Home",
   "nav.third_party.register": "App Create",
-  "nav.third_party.management": "App Management"
+  "nav.third_party.management": "App Management",
+
+  "third_party.create_done": "Successfully create new Application.",
+
+  "third_party.field_app_name": "App name",
+  "third_party.field_site_url": "App/Site url(ex, www.fpa.org, org.genesissam.fpa)",
+  "third_party.field_submit": "Submit",
+
+  "third_party.field_error_empty": "Please, fill out every fields",
+  "third_party.error_400": "You cannot use this name.",
+  "third_party.error_401": "You need to Developer privilege",
+  "third_party.error_other": "Sorry:( unexpected error ocurred",
+
+  "user_privilege_change.done": "Successfully changed as Developer mode",
+  "user_privilege_change.error_401": "Sorry :( unexpected error occurred",
+  "user_privilege_change.error_422": "Server couldn't execute without essential parameter",
+  "user_privilege_change.button_text": "Change to Developer privilege"
 }

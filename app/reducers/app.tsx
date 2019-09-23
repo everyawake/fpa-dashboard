@@ -1,5 +1,5 @@
 import { AllActions } from "app/actions";
-import { APP_TYPES } from "app/actions/types";
+import { APP_TYPES, USER_TYPES } from "app/actions/types";
 
 export interface IState {
 	currentUser: Model.IRawUser | null;
@@ -14,6 +14,15 @@ export function reducer(state = INITIAL_STATE, action: AllActions): IState {
 		case APP_TYPES.CHANGE_CURRENT_USER: {
 			return {
 				currentUser: action.payload.userData,
+			};
+		}
+
+		case USER_TYPES.CHANGED_PRIVILEGE_AS_DEVELOPER: {
+			return {
+				currentUser: {
+					...state.currentUser,
+					role: 1000,
+				},
 			};
 		}
 

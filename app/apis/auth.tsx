@@ -1,5 +1,5 @@
-import AxiosInstance from "./base";
 import { CancelToken } from "axios";
+import AxiosInstance from "./base";
 
 export default class AuthAPI {
 	public static async getAuthByToken(): Promise<{ result: Model.IRawUser }> {
