@@ -9,12 +9,16 @@ import * as ThirdPartyDataReducer from "app/reducers/thirdparty";
 // page reducers
 import * as ThirdPartyPageReducer from "app/thirdparty/reducer";
 
+import * as DeveloperPrivilegeButtonReducer from "common/components/developerPrivilegeButton/reudcer";
+
 export interface IAppState {
 	router: RouterState;
 	app: appReducer.IState;
 	fpaSnackBar: fpaSnackBarReducer.IFpaSnackBarState;
 	thirdPartyPage: ThirdPartyPageReducer.IThirdPartyPageState;
 	thirdPartyData: ThirdPartyDataReducer.IThirdPartyData;
+
+	developerPrivilegeButton: DeveloperPrivilegeButtonReducer.IDeveloperPrivilegeButtonState;
 }
 
 export const INITIAL_APP_STORE_STATE: IAppState = {
@@ -23,6 +27,8 @@ export const INITIAL_APP_STORE_STATE: IAppState = {
 	fpaSnackBar: fpaSnackBarReducer.INITIAL_STATE,
 	thirdPartyPage: ThirdPartyPageReducer.INITIAL_STATE,
 	thirdPartyData: ThirdPartyDataReducer.INITIAL_STATE,
+
+	developerPrivilegeButton: DeveloperPrivilegeButtonReducer.INITIAL_STATE,
 };
 
 const rootReducer = (history: History) =>
@@ -32,6 +38,8 @@ const rootReducer = (history: History) =>
 		fpaSnackBar: fpaSnackBarReducer.reducer,
 		thirdPartyPage: ThirdPartyPageReducer.reducer,
 		thirdPartyData: ThirdPartyDataReducer.reducer,
+
+		developerPrivilegeButton: DeveloperPrivilegeButtonReducer.reducer,
 	});
 
 export default rootReducer;
