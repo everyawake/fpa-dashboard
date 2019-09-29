@@ -123,7 +123,7 @@ class CreateThirdPartyPage extends React.PureComponent<IProps, IState> {
 
 	private readonly renderApps = () => {
 		return this.props.dataState.ownedApps.map(app => {
-			return <AppItem type="OwnApp" data={app} />;
+			return <AppItem key={`${app.site_url}_${app.name}`} type="OwnApp" data={app} />;
 		});
 	};
 

@@ -57,7 +57,9 @@ class MyRegisteredApps extends React.PureComponent<IProps> {
 	}
 
 	private readonly renderApps = () => {
-		return this.props.pageData.registeredApps.map(app => <AppItem type="RegisteredApp" data={app} />);
+		return this.props.pageData.registeredApps.map(app => (
+			<AppItem key={`${app.site_url}_${app.name}`} type="RegisteredApp" data={app} />
+		));
 	};
 }
 

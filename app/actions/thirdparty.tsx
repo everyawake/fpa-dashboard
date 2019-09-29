@@ -44,6 +44,7 @@ export function createNewThirdPartyApp(
 		dispatch(ActionCreator.startCreateThirdParty());
 		try {
 			await ThirdPartyAPI.createNewThirdParty(params);
+			dispatch(ActionCreator.createdThirdParty(params));
 			dispatch(openFpaSnackBar({ messageId: "third_party.create_done" }));
 			if (successFunction) successFunction();
 		} catch (err) {
