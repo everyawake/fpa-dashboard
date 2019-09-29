@@ -9,12 +9,20 @@ declare namespace Model {
 			confirmed: boolean;
 		}> {}
 
-	interface IRawThirdParty
+	interface IRawMyOwnedApp
 		extends Readonly<{
-			appName: string;
-			siteUrl: string;
-			publicKey: string;
-			privateKey: string;
-			owner: string;
+			secret_key: string;
+			public_key: string;
+			name: string;
+			site_url: string;
+		}> {}
+
+	interface IRawMyRegisteredApp
+		extends Readonly<{
+			app_public_key: string;
+			name: string;
+			site_url: string;
+			token: string;
+			issued_date: string;
 		}> {}
 }

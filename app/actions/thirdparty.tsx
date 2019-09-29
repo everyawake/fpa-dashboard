@@ -1,6 +1,7 @@
+import { CancelToken } from "axios";
 import { THIRD_PARTY_TYPES } from "./types";
+import ThirdPartyAPI from "app/apis/thirdparty";
 import { ActionExtractor, ActionThunk } from "common/helpers/reduxHelper";
-import ThirdPartyAPI from "../apis/thirdparty";
 import { openFpaSnackBar } from "common/components/fpaSnackBar/action";
 
 function createAction<T extends { type: THIRD_PARTY_TYPES }>(d: T): T {
@@ -21,6 +22,16 @@ export const ActionCreator = {
 		createAction({
 			type: THIRD_PARTY_TYPES.FAILED_CREATE_THIRD_PARTY,
 		}),
+
+	startFetchingOwnApps: () => createAction({ type: THIRD_PARTY_TYPES.START_FETCHING_OWN_APPS }),
+	fetchedOwnApps: (apps: ReadonlyArray<Model.IRawMyOwnedApp>) =>
+		createAction({ type: THIRD_PARTY_TYPES.FETCHED_OWN_APPS, payload: { apps } }),
+	failedFetchingOwnApps: () => createAction({ type: THIRD_PARTY_TYPES.FAILED_FETCHING_OWN_APPS }),
+
+	startFetchingRegisteredApps: () => createAction({ type: THIRD_PARTY_TYPES.START_FETCHING_REGISTERED_APPS }),
+	fetchedRegisteredApps: (apps: ReadonlyArray<Model.IRawMyRegisteredApp>) =>
+		createAction({ type: THIRD_PARTY_TYPES.FETCHED_REGISTERED_APPS, payload: { apps } }),
+	failedFetchingRegisteredApps: () => createAction({ type: THIRD_PARTY_TYPES.FAILED_FETCHING_REGISTERED_APPS }),
 };
 
 export type ActionTypes = ActionExtractor<typeof ActionCreator>;
@@ -57,6 +68,38 @@ export function createNewThirdPartyApp(
 				}
 			}
 			dispatch(openFpaSnackBar({ messageId: "third_party.error_other" }));
+		}
+	};
+}
+
+export function getMyOwnApps(cancelToken: CancelToken): ActionThunk {
+	return async dispatch => {
+		dispatch(ActionCreator.startFetchingOwnApps());
+
+		try {
+			const result = await ThirdPartyAPI.getMyOwnApps({
+				cancelToken,
+			});
+
+			dispatch(ActionCreator.fetchedOwnApps(result.result));
+		} catch (err) {
+			dispatch(ActionCreator.failedFetchingOwnApps());
+		}
+	};
+}
+
+export function getMyRegisteredApps(cancelToken: CancelToken): ActionThunk {
+	return async dispatch => {
+		dispatch(ActionCreator.startFetchingRegisteredApps());
+
+		try {
+			const result = await ThirdPartyAPI.getMyRegisteredApps({
+				cancelToken,
+			});
+
+			dispatch(ActionCreator.fetchedRegisteredApps(result.result));
+		} catch (err) {
+			dispatch(ActionCreator.failedFetchingRegisteredApps());
 		}
 	};
 }

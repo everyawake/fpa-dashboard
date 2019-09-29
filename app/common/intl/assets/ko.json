@@ -14,8 +14,8 @@
   "welcome.1": "FPA에 오신걸 환영합니다!",
 
   "nav.home": "Home",
-  "nav.third_party.register": "앱 등록",
-  "nav.third_party.management": "앱 관리",
+  "nav.third_party.register": "내 앱 등록",
+  "nav.third_party.management": "가입한 앱",
 
   "third_party.create_done": "어플리케이션를 생성했습니다.",
   "third_party.field_app_name": "앱 이름",
