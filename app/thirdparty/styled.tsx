@@ -40,3 +40,15 @@ export const SubmitButton = styled(ButtonBase)`
 		color: ${props => props.theme.white100} !important;
 	}
 `;
+
+export const ListWrapper = styled.div`
+	margin: 1rem 0;
+	width: 100%;
+	height: 100%;
+	overflow: hidden;
+
+	.inner {
+		height: 100%;
+		overflow: scroll;
+	}
+`;

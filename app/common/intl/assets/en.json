@@ -14,8 +14,8 @@
   "welcome.1": "Welcome to FPA!",
 
   "nav.home": "Home",
-  "nav.third_party.register": "App Create",
-  "nav.third_party.management": "App Management",
+  "nav.third_party.register": "Create my Apps",
+  "nav.third_party.management": "My App Management",
 
   "third_party.create_done": "Successfully create new Application.",
 
