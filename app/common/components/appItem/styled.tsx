@@ -23,3 +23,9 @@ export const SubTitle = styled.div`
 	font-size: 0.9rem;
 	color: ${props => props.theme.grey800};
 `;
+
+export const ExtraText = styled.div`
+	margin-top: 0.3rem;
+	font-size: 0.8rem;
+	color: ${props => props.theme.grey700};
+`;
